@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "sonar.exclusions",
+  "type": "java.lang.String",
+  "description": "A description for 'sonar.exclusions'"
+}]}
