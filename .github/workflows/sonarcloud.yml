@@ -3,7 +3,7 @@ name: SonarCloud Analysis
 on:
   push:
     branches:
-      - master  # Cambia a 'master' si tu rama principal es master
+      - master  # Confirmado que tu rama principal es master
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Necesario para análisis de ramas/PRs
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -35,4 +35,4 @@ jobs:
       - name: Build and analyze with SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify sonar:sonar -Dspring.profiles.active=test -Dsonar.projectKey=com.estudiante:CRUD-Estudiante -Dsonar.organization=michelhdez -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar -Dspring.profiles.active=test -Dsonar.projectKey=MichelHdez_Crud-Estudiante -Dsonar.organization=michelhdez -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
