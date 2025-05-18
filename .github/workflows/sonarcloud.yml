@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - main
+      - master  # Cambia a 'master' para consistencia
 
 jobs:
   build:
@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necesario para análisis de ramas/PRs
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -30,7 +32,15 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn clean verify sonar:sonar -Dsonar.projectKey=mhz-devstudio_Crud-Estudiante -Dsonar.organization=mhz-devstudio -Dsonar.host.url=https://sonarcloud.io
+        run: mvn -B clean verify sonar:sonar -Dspring.profiles.active=test -Dsonar.projectKey=mhz-devstudio_Crud-Estudiante -Dsonar.organization=mhz-devstudio -Dsonar.host.url=https://sonarcloud.io
