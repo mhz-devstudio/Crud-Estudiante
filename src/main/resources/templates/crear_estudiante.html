@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<title>Registro Estudiante</title>
@@ -32,18 +32,18 @@
               <div class="card-body">
                  <form th:action="@{/estudiantes}" th:object="${estudiante}" method="POST">
                     <div class="form-group">
-                       <label>Nombre : </label>
-                       <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite su nombre : " required>
+                       <label for="nombre">Nombre:</label>
+                       <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite su nombre : " required>
                     </div>
                     
                     <div class="form-group">
-                       <label>Apellido : </label>
-                       <input type="text" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Digite su apellido : " required>
+                       <label for="apellido">Apellido:</label>
+                       <input type="text" id="apellido" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Digite su apellido : " required>
                     </div>
                     
                     <div class="form-group">
-                       <label>Email : </label>
-                       <input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Digite su email : " required>
+                       <label for="email">Email:</label>
+                       <input type="email" id="email" name="email" th:field="*{email}" class="form-control" placeholder="Digite su email : " required>
                     </div>
                    
                     <div class="box-footer">
